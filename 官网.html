@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>491班</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #A5A58D; 
+            --secondary: #B7B7A4; 
+            --accent: #6B705C; 
+            --light: #FFFDF5; 
+            --dark: #3A3A3A; 
+            --text: #4A4A4A; 
+            --card-bg: rgba(255, 253, 245, 0.9);
+            --sakura: #DDBEA9; 
+            --border: #E0D5C8; 
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Zen Kaku Gothic New', 'Noto Serif SC', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="none"/><path d="M50,80 C60,60 80,50 100,50 C120,50 140,60 150,80 C160,100 150,120 130,130 C110,140 90,140 70,130 C50,120 40,100 50,80 Z" fill="%23DDBEA9" opacity="0.05"/></svg>');
+            background-size: 300px;
+        }
+        
+        /* 部分装饰下面需要用 */
+        .japanese-decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            font-size: 120px;
+            color: var(--sakura);
+            transform: rotate(-30deg);
+        }
+        
+        /
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 253, 245, 0.92);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            padding: 30px 40px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+        
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 20px 0 30px;
+            position: relative;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .school-logo {
+            font-size: 48px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .header-content h1 {
+            font-size: 2.6rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .class-name {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--accent);
+            padding: 8px 25px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin: 15px 0;
+            border: 2px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .class-name:hover {
+            background-color: rgba(107, 112, 92, 0.1);
+        }
+        
+        .motto {
+            font-size: 1.3rem;
+            color: var(--accent);
+            font-weight: 400;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+            font-style: italic;
+        }
+        
+        .slogan {
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        /* 信息 */
+        .class-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 25px;
+        }
+        
+        .info-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 220px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .info-card i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .info-card h3 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .info-card p {
+            color: var(--text);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* 按钮样式 */
+        .btn-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .view-teachers-btn {
+            background-color: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .view-teachers-btn:hover {
+            background-color: rgba(107, 112, 92, 0.1);
+            box-shadow: 0 5px 15px rgba(107, 112, 92, 0.1);
+        }
+        
+        .view-teachers-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .view-teachers-btn i {
+            margin-right: 10px;
+        }
+        
+        /* 教师弹窗样式【百度找的】 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.4s;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: var(--light);
+            margin: 3% auto;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 32px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 10;
+            opacity: 0.7;
+        }
+        
+        .close:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
+        
+        .modal-header {
+            padding: 25px 40px;
+            text-align: center;
+            position: relative;
+            background-color: var(--light);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .modal-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .modal-header p {
+            font-size: 1.1rem;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        .search-container {
+            padding: 20px 40px 15px;
+            background-color: var(--light);
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background-color: white;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 14px 25px;
+            border: none;
+            font-size: 1.05rem;
+            outline: none;
+            background: transparent;
+            color: var(--text);
+        }
+        
+        .search-box input::placeholder {
+            color: #B7B7A4;
+            font-style: italic;
+        }
+        
+        .search-box button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background-color: var(--accent);
+        }
+        
+        /* 教师列表容器 */
+        .teachers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            padding: 20px 40px 30px;
+        }
+        
+        .teacher-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+        
+        .teacher-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+        
+        .teacher-avatar {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+        
+        .teacher-avatar span {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .teacher-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .teacher-info h3 {
+            color: var(--dark);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .teacher-info p {
+            margin: 3px 0;
+            color: var(--text);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .teacher-info i {
+            color: var(--primary);
+            margin-right: 8px;
+            width: 16px;
+            text-align: center;
+            min-width: 16px;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 20px 0 15px;
+            color: var(--text);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .teachers-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .class-name {
+                font-size: 1.2rem;
+            }
+            
+            .info-card {
+                min-width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .teachers-container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+                gap: 10px;
+            }
+            
+            .modal-header,
+            .search-container {
+                padding: 15px 20px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+                border-radius: 15px;
+            }
+            
+            .search-box input,
+            .search-box button {
+                width: 100%;
+                padding: 12px 15px;
+            }
+            
+            .teacher-card {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 装饰 -->
+    <div class="japanese-decoration" style="top: 5%; left: 5%;">和</div>
+    <div class="japanese-decoration" style="top: 20%; right: 5%;">風</div>
+    
+    <div class="container">
+        <header>
+            <div class="school-logo">
+                <i class="fas fa-school"></i>
+            </div>
+            <div class="header-content">
+                <h1>琼山中学</h1>
+                <div class="class-name">491班</div>
+                <p class="motto">厚德 博学 笃行 致远</p>
+                <p class="slogan">不以物喜不以己悲</p>
+            </div>
+        </header>
+        
+        <div class="class-info">
+            <div class="info-card">
+                <i class="fas fa-users"></i>，
+                <h3>55人</h3>
+                <p>班级总人数</p>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>15位</h3>
+                <p>教师</p>
+            </div>
+            
+            <div class="info-card">
+                <i class="fas fa-award"></i>
+                <h3>15项</h3>
+                <p>班级荣誉</p>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <button id="viewTeachersBtn" class="view-teachers-btn">
+                <i class="fas fa-chalkboard-teacher"></i> 查看班级教师列表
+            </button>
+        </div>
+        
+        <div id="teachersModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                
+                <div class="modal-header">
+                    <h2>491班 教师</h2>
+                    <p>春蚕到死丝方尽，蜡炬成灰泪始干</p>
+                </div>
+                
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="搜索教师姓名或学科...">   
+                        <button id="searchBtn"><i class="fas fa-search"></i> 搜索</button>
+                    </div>
+                </div>
+                
+                <div class="teachers-container" id="teachersList">
+                    <!-- 教师卡片将通过JS动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 491班 | dev：mikumiku  重要贡献 刘书阳</p>
+        </footer>
+    </div>
+
+    <script>
+        // 教师数据
+
+        const teachers = [
+            { id: 1, name: "关万莹", gender: "女", role: "班主任、数学老师" },
+            { id: 2, name: "杜公正", gender: "男", role: "语文老师" },
+            { id: 3, name: "何冬雪", gender: "女", role: "化学老师" },
+            { id: 4, name: "黄金月", gender: "女", role: "化学老师" },
+            { id: 5, name: "曹彭", gender: "男", role: "体育老师" },
+            { id: 6, name: "王艳云", gender: "女", role: "英语老师" },
+            { id: 7, name: "孙艳", gender: "女", role: "政治老师" },
+            { id: 8, name: "吴洁明", gender: "女", role: "历史老师" },
+            { id: 9, name: "陈坚", gender: "男", role: "物理老师" },
+            { id: 10, name: "王焕钦", gender: "男", role: "体育老师" },
+            { id: 11, name: "王位峰", gender: "男", role: "政治老师" },
+            { id: 12, name: "王丽蓉", gender: "女", role: "地理老师" },
+            { id: 13, name: "唐娇", gender: "女", role: "英语老师" },
+            { id: 14, name: "文日婷", gender: "女", role: "生物老师" },
+            { id: 15, name: "谢梓申", gender: "男", role: "历史老师" },
+     
+        ];
+
+        // 获取DOM元素
+        const viewTeachersBtn = document.getElementById('viewTeachersBtn');
+        const teachersModal = document.getElementById('teachersModal');
+        const closeModal = document.getElementById('closeModal');
+        const teachersList = document.getElementById('teachersList');
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+      
+        function openModal() {
+            teachersModal.style.display = 'block';
+            setTimeout(() => {
+                teachersModal.style.opacity = 1;
+            }, 10);
+            document.body.style.overflow = 'hidden';
+            renderTeachers(teachers);
+        }
+
+        
+        function closeTeachersModal() {
+            teachersModal.style.opacity = 0;
+            setTimeout(() => {
+                teachersModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 400);
+        }
+
+        
+        function renderTeachers(teachersArray) {
+            teachersList.innerHTML = '';
+            
+            if (teachersArray.length === 0) {
+                teachersList.innerHTML = '<div class="no-results" style="text-align:center; padding:40px; color:#aaa; font-size:1.1rem;">没有找到匹配的老师</div>';
+                return;
+            }
+            
+            teachersArray.forEach(teacher => {
+                const teacherCard = document.createElement('div');
+                teacherCard.className = 'teacher-card';
+                
+                // 首字母当头像用
+                const firstLetter = teacher.name.charAt(0);
+                
+                teacherCard.innerHTML = `
+                    <div class="teacher-avatar">
+                        <span>${firstLetter}</span>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>${teacher.name}</h3>
+                        <p><i class="fas fa-venus-mars"></i> ${teacher.gender}</p>
+                        <p><i class="fas fa-book"></i> ${teacher.role}</p>
+                    </div>
+                `;
+                
+                teachersList.appendChild(teacherCard);
+            });
+        }
+
+        // 搜索功能
+        function searchTeachers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const filteredTeachers = teachers.filter(teacher => 
+                teacher.name.toLowerCase().includes(searchTerm) ||
+                teacher.role.toLowerCase().includes(searchTerm)
+            );
+            
+            renderTeachers(filteredTeachers);
+        }
+
+        // 事件监听器
+        viewTeachersBtn.addEventListener('click', openModal);
+        closeModal.addEventListener('click', closeTeachersModal);
+        searchBtn.addEventListener('click', searchTeachers);
+
+        // 回车键搜索
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                searchTeachers();
+            }
+        });
+
+        // 点击外部关闭弹窗
+        window.addEventListener('click', function(event) {
+            if (event.target === teachersModal) {
+                closeTeachersModal();
+            }
+        });
+
+        // ESC键关闭弹窗，pc端
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeTeachersModal();
+            }
+        });
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            renderTeachers(teachers);
+        });
+    </script>
+</body>
+</html>
